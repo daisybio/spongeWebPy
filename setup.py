@@ -24,7 +24,7 @@ setup(
 
     # This should be a valid link to your project's main homepage.
     #TODO give right url to github repo
-    #url='https://github.com/pypa/sampleproject',  # Optional
+    url='https://github.com/biomedbigdata/sponge_web_py',  # Optional
 
     # This should be your name or the name of the organization which owns the
     # project.
