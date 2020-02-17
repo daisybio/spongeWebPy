@@ -23,7 +23,6 @@ setup(
     long_description_content_type="text/markdown",
 
     # This should be a valid link to your project's main homepage.
-    #TODO give right url to github repo
     url='https://github.com/biomedbigdata/sponge_web_py',  # Optional
 
     # This should be your name or the name of the organization which owns the
@@ -58,7 +57,10 @@ setup(
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     #TODO set packages correctly
-    install_requires=[],
+    install_requires=[
+        "requests",
+        "pandas"
+    ],
 
     include_package_data=True,
     zip_safe=False)
