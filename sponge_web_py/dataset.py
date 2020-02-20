@@ -1,4 +1,3 @@
-""" Example module"""
 import json
 import requests
 from pandas import json_normalize
@@ -12,7 +11,7 @@ def get_datasetInformation(disease_name):
     :param disease_name: The name of the dataset of interest as string.
                          If default (None) is set, all available datasets with corresponding information are shown.
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
-    :return: Information about all or specific dataset(s) as pandas dataframe - If empty return value will be reason for failure.
+    :return: Information about all or specific dataset(s) as pandas dataframe - If empty return value will be the reason for failure.
     :example: get_datasetInformation("kidney clear cell carcinoma")
     """
     params = {"disease_name": disease_name}
@@ -34,7 +33,7 @@ def get_runInformation(disease_name):
     Retrieve all used parameters of the SPONGE method to create published results for the cancer type/dataset of interest.
     :param disease_name: Name of the specific cancer type/dataset as string.
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
-    :return: Run information about dataset of interest as pandas dataframe - If empty return value will be reason for failure.
+    :return: Run information about dataset of interest as pandas dataframe - If empty return value will be the reason for failure.
     :example: get_runInformation("kidney clear cell carcinoma")
     """
 
