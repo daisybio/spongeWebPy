@@ -13,7 +13,7 @@ def get_geneExprValues(disease_name, ensg_number = None, gene_symbol = None):
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
     :param ensg_number: A list of ensg number(s). If ensg_number is set, gene_symbol must be None.
     :param gene_symbol: A list of gene symbol(s). If gene_symbol is set, ensg_number must be None.
-    :return: A pandas dataframe with gene expression values. - If empty return value will be the reason for failure.
+    :return: A pandas dataframe with gene expression values. If empty return value will be the reason for failure.
     :example: get_geneExprValues(disease_name = "kidney clear cell carcinoma",
                     ensg_number = ["ENSG00000259090","ENSG00000217289"])
     """
@@ -40,7 +40,7 @@ def get_mirnaExprValues(disease_name, mimat_number = None, hs_number = None):
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
     :param mimat_number: A list of mimat_number(s). If mimat_number is set, hs_number must be None.
     :param hs_number: A list of hs_number(s). If hs_number is set, mimat_number must be None.
-    :return: A pandas dataframe with gene mirna values. - If empty return value will be the reason for failure.
+    :return: A pandas dataframe with gene mirna values. If empty return value will be the reason for failure.
     :example: get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
                      mimat_number = ["MIMAT0000076", "MIMAT0000261"])
     """
