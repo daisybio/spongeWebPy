@@ -91,11 +91,17 @@ def get_all_ceRNAInteractions(disease_name=None,
             raise ValueError("Provided Ssrting parameter: ", sorting,
                              " is not an allowed value. Please check the help page for further information.")
 
-    params = {"disease_name": disease_name, "ensg_number": ensg_number, "gene_symbol": gene_symbol,
-              "gene_type": gene_type, "pValue": pValue, "pValueDirection": pValueDirection, "mscor": mscor,
-              "mscorDirection": mscorDirection, "correlation": correlation,
-              "correlationDirection": correlationDirection,
-              "sorting": sorting, "descending": descending, "limit": limit, "offset": offset, "information": False}
+    params = {"disease_name": disease_name, "gene_type": gene_type, "pValue": pValue,
+              "pValueDirection": pValueDirection, "mscor": mscor, "mscorDirection": mscorDirection,
+              "correlation": correlation, "correlationDirection": correlationDirection, "sorting": sorting,
+              "descending": descending, "limit": limit, "offset": offset, "information": False}
+
+    # Add list type parameters
+    if ensg_number is not None:
+        params.update({"ensg_number": ",".join(ensg_number)})
+    if gene_symbol is not None:
+        params.update({"gene_symbol": ",".join(gene_symbol)})
+
     api_url = '{0}ceRNAInteraction/findAll'.format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)

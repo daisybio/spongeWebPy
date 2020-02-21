@@ -17,7 +17,14 @@ def get_geneExprValues(disease_name, ensg_number = None, gene_symbol = None):
     :example: get_geneExprValues(disease_name = "kidney clear cell carcinoma",
                     ensg_number = ["ENSG00000259090","ENSG00000217289"])
     """
-    params = {"disease_name": disease_name, "ensg_number" : ensg_number, "gene_symbol" : gene_symbol}
+    params = {"disease_name": disease_name}
+
+    # Add list type parameters
+    if ensg_number is not None:
+        params.update({"ensg_number": ",".join(ensg_number)})
+    if gene_symbol is not None:
+        params.update({"gene_symbol": ",".join(gene_symbol)})
+
     api_url = '{0}exprValue/getceRNA'.format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
@@ -44,7 +51,14 @@ def get_mirnaExprValues(disease_name, mimat_number = None, hs_number = None):
     :example: get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
                      mimat_number = ["MIMAT0000076", "MIMAT0000261"])
     """
-    params = {"disease_name": disease_name, "mimat_number": mimat_number, "hs_number": hs_number}
+    params = {"disease_name": disease_name}
+
+    # Add list type parameters
+    if mimat_number is not None:
+        params.update({"mimat_number": ",".join(mimat_number)})
+    if hs_number is not None:
+        params.update({"hs_number": ",".join(hs_number)})
+
     api_url = '{0}exprValue/getmirNA'.format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
