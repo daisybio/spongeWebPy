@@ -30,7 +30,7 @@ def get_miRNAOccurences(disease_name,
              If empty return value will be the reason for failure.
     :example: get_miRNAOccurences(disease_name="kidney clear cell carcinoma", occurences = 1000, limit = 10)
     """
-
+    # Test given parameter
     if sorting is not None:
         if sorting not in ["pValue", "mscor", "correlation"]:
             raise ValueError("Provided Ssrting parameter: ", sorting,
