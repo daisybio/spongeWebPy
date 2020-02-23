@@ -12,7 +12,7 @@ def get_geneCount(disease_name=None,
                   minCountSign = None):
     """
     Number of Times Gene Involved in Complete Network and Significant Interactions.
-     :param disease_name: The name of the dataset of interest as string.
+    :param disease_name: The name of the dataset of interest as string.
                          If default (None) is set, all available datasets with corresponding information are shown.
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
     :param ensg_number: A list of ensg number(s). If ensg_number is set, gene_symbol must be None.
