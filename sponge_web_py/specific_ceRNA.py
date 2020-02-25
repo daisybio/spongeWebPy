@@ -78,8 +78,3 @@ def get_ceRNA(disease_name,
     else:
         if response.status_code == 404:
             raise ValueError("API response is empty. Reason: " + data["detail"].values)
-
-tmp = get_ceRNA(disease_name = "kidney clear cell carcinoma",
-                        gene_type = "lincRNA", minBetweenness = 1500)
-print(tmp)
-print(tmp.dtypes)
