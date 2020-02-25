@@ -38,7 +38,7 @@ def get_ceRNA(disease_name,
     :return: A pandas dataframe containing all ceRNAs (genes) satisfying the given filters.
              If empty return value will be the reason for failure.
     :example: get_ceRNA(disease_name = "kidney clear cell carcinoma",
-                        gene_type = "lincRNA", minBetweenness = 1500)
+                        gene_type = "lincRNA", minBetweenness = 0.8)
     """
 
     # Test given parameter
