@@ -70,7 +70,3 @@ def get_sponged_miRNA(disease_name=None,
     else:
         if response.status_code == 404:
             raise ValueError("API response is empty. Reason: " + data["detail"].values)
-
-tmp = get_sponged_miRNA(disease_name="kidney", gene_symbol = "SEMA4B")
-print(tmp)
-print(tmp.dtypes)
