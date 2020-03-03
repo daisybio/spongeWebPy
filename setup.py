@@ -45,9 +45,6 @@ setup(
     # simple.
     packages=["sponge_web_py"],  # Required
 
-    # Specify which Python versions you support. In contrast to the
-    # 'Programming Language' classifiers above, 'pip install' will check this
-    # and refuse to install the project if the version does not match.
     python_requires=">=3.5, <4",
 
     # This field lists other packages that your project depends on to run.
