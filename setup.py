@@ -1,7 +1,7 @@
 from setuptools import setup
 
 def readme():
-    with open("README.md") as f:
+    with open("README.md", encoding="utf8") as f:
         return f.read()
 
 setup(
@@ -56,7 +56,6 @@ setup(
     #
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    #TODO set packages correctly
     install_requires=[
         "requests",
         "pandas"

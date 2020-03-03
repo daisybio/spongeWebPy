@@ -1,9 +1,11 @@
-"""
-Setup the basic connection things
-"""
-
-#set the base url of the SPONGE-web API
-api_url_base = 'http://10.162.163.20:5000/'
-
-#set up the HTTP request headers the way the API docs describe
-headers = {'Content-Type': 'application/json'}
+# load all functions from subdirs
+from sponge_web_py.dataset import *
+from sponge_web_py.occurences import *
+from sponge_web_py.survivalAnalysis import *
+from sponge_web_py.expressionValues import *
+from sponge_web_py.specific_miRNAInteraction import *
+from sponge_web_py.all_ceRNAInteraction import *
+from sponge_web_py.find_miRNA import *
+from sponge_web_py.get_GeneCount import *
+from sponge_web_py.specific_ceRNA import *
+from sponge_web_py.specific_ceRNAInteraction import *
