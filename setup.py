@@ -13,7 +13,7 @@ setup(
     #
     # And where it will live on PyPI: https://pypi.org/project/sponge_web_py/
     name='sponge_web_py',
-    version="2.0.0",
+    version="1.0.0",
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
