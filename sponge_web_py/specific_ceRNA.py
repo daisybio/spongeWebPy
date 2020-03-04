@@ -66,7 +66,7 @@ def get_ceRNA(disease_name,
               "minNodeDegree": minNodeDegree, "minEigenvector": minEigenvector, "sorting": sorting,
               "descending": descending, "limit": limit, "offset": offset, "information": False}
 
-    api_url = '{0}ceRNAInteraction/findAll'.format(config.api_url_base)
+    api_url = '{0}/findceRNA'.format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
