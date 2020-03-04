@@ -8,6 +8,8 @@ import sponge_web_py.config as config
 def get_specific_ceRNAInteractions(disease_name=None,
                                    ensg_number=None,
                                    gene_symbol=None,
+                                   pValue=None,
+                                   pValueDirection=None,
                                    limit=100,
                                    offset=None):
     """
@@ -17,6 +19,9 @@ def get_specific_ceRNAInteractions(disease_name=None,
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
     :param ensg_number: A list of ensg number(s). If ensg_number is set, gene_symbol must be None.
     :param gene_symbol: A list of gene symbol(s). If gene_symbol is set, ensg_number must be None.
+    :param pValue: Threshold of the FDR adjusted p-value. Default is 0.05.
+    :param pValueDirection: Direction of the FDR adjusted p-value threshold (<, >). Must be set if pValue is set.
+                            Possible values are: "<", ">".
     :param limit: Number of results that should be shown. Default value is 100 and can be up to 1000.
                   For more results please use batches, the provided offset parameter or download the whole dataset.
     :param offset: Starting point from where results should be shown.
@@ -26,7 +31,7 @@ def get_specific_ceRNAInteractions(disease_name=None,
                                              ensg_number = ["ENSG00000259090","ENSG00000217289","ENSG00000152284"])
     """
 
-    params = {"disease_name": disease_name, "limit": limit, "offset": offset}
+    params = {"disease_name": disease_name, "pValue":pValue, "pValueDirection":pValueDirection, "limit": limit, "offset": offset}
 
     # Add list type parameters
     if ensg_number is not None:
