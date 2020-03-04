@@ -8,10 +8,11 @@ import sponge_web_py.config as config
 def get_specific_ceRNAInteractions(disease_name=None,
                                    ensg_number=None,
                                    gene_symbol=None,
-                                   pValue=None,
-                                   pValueDirection=None,
+                                   pValue=0.05,
+                                   pValueDirection="<",
                                    limit=100,
                                    offset=None):
+    print("start")
     """
     Get all interactions between the given identifiers (ensg_number or gene_symbol).
     :param disease_name: The name of the dataset of interest as string.
@@ -30,8 +31,13 @@ def get_specific_ceRNAInteractions(disease_name=None,
     :example: get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
                                              ensg_number = ["ENSG00000259090","ENSG00000217289","ENSG00000152284"])
     """
+    # Test parameter settings
+    if pValueDirection is not None:
+        if pValueDirection not in [">", "<"]:
+            raise ValueError("pValueDirection:", pValueDirection,
+                             " is not an allowed value. Please check the help page for further information.")
 
-    params = {"disease_name": disease_name, "pValue":pValue, "pValueDirection":pValueDirection, "limit": limit, "offset": offset}
+    params = {"disease_name": disease_name, "pValue": pValue, "pValueDirection":pValueDirection, "limit": limit, "offset": offset}
 
     # Add list type parameters
     if ensg_number is not None:
