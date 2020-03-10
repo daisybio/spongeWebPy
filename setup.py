@@ -54,8 +54,8 @@ setup(
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        "requests",
-        "pandas"
+        "requests>=2.23.0",
+        "pandas>=1.0.1"
     ],
 
     include_package_data=True,
