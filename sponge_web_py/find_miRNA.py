@@ -8,7 +8,8 @@ import sponge_web_py.config as config
 def get_sponged_miRNA(disease_name=None,
                       ensg_number=None,
                       gene_symbol=None,
-                      gene_type=None):
+                      gene_type=None,
+                      between=False):
     """
     Get all miRNAs that contribute to all interactions between the given identifiers (ensg_number or gene_symbol).
     :param disease_name: The name of the dataset of interest as string.
@@ -24,6 +25,8 @@ def get_sponged_miRNA(disease_name=None,
                       TEC, TR_C_gene, TR_V_gene, TR_V_pseudogene, transcribed_processed_pseudogene,
                       transcribed_unitary_pseudogene, transcribed_unprocessed_pseudogene,
                       translated_processed_pseudogene, unitary_pseudogene, unprocessed_pseudogene, vaultRNA].
+    :param between: If false (default), all interactions where one of the interaction partners fits the given genes of interest
+                    will be considered. If true, just interactions between the genes of interest will be considered.
     :return: A pandas dataframe containing all found miRNAs.
              If empty return value will be the reason for failure.
     :example: get_sponged_miRNA(disease_name="kidney", gene_symbol = ["TCF7L1", "SEMA4B"])
@@ -47,7 +50,7 @@ def get_sponged_miRNA(disease_name=None,
 
 
 
-    params = {"disease_name": disease_name,"gene_type": gene_type}
+    params = {"disease_name": disease_name,"gene_type": gene_type, "between": between}
 
     # Add list type parameters
     if ensg_number is not None:
