@@ -51,8 +51,8 @@ Another way to get an overview of the results is to search for a specific gene a
 get_geneCount(gene_symbol = ["HOXA1"])
 ```
 
-## How to find a subnetwork?
-To find a subnetwork of nodes of interest use the functions:
+## How to find a sub network?
+To find a sub network of nodes of interest use the functions:
 Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type/dataset or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
 ```
 # Retrieve all possible ceRNAs for gene, identified by ensg_number,
@@ -105,7 +105,7 @@ get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
                     mimat_number = ["MIMAT0000076", "MIMAT0000261"])
 ```
 
-To get surival analysis data use the function 
+To get survival analysis data use the function 
 
 ```
 get_survAna_rates(disease_name="kidney clear cell carcinoma",
@@ -113,9 +113,9 @@ get_survAna_rates(disease_name="kidney clear cell carcinoma",
                  sample_ID = ["TCGA-BP-4968","TCGA-B8-A54F"])
 ```
 
-It returs a data_frame with gene and patient/sample information and the "group information" encoded by column "overexpressed". Information about expression value of the gene (FALSE = underexpression, gene expression <= mean gene expression over all samples, TRUE = overexpression, gene expression >= mean gene expression over all samples)
+It returns a data_frame with gene and patient/sample information and the "group information" encoded by column "overexpressed". Information about expression value of the gene (FALSE = underexpression, gene expression <= mean gene expression over all samples, TRUE = overexpression, gene expression >= mean gene expression over all samples)
 
-For furhter patient/sample informations:
+For further patient/sample information:
 ```
 get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
                               sample_ID = ["TCGA-BP-4968","TCGA-B8-A54F"])
