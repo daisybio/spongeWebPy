@@ -54,8 +54,16 @@ setup(
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
+        "certifi>=2019.11.28",
+        "chardet>=3.0.4",
+        "idna>=2.9",
+        "numpy>=1.18.1",
+        "pandas>=1.0.1",
+        "python-dateutil>=2.8.1",
+        "pytz>=2019.3",
         "requests>=2.23.0",
-        "pandas>=1.0.1"
+        "six>=1.14.0",
+        "urllib3>=1.25.8"
     ],
 
     include_package_data=True,
