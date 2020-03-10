@@ -4,14 +4,15 @@ def readme():
     with open("README.md", encoding="utf8") as f:
         return f.read()
 
+
 setup(
     # This is the name of your project. The first time you publish this
     # package, this name will be registered for you. It will determine how
     # users can install this project, e.g.:
     #
-    # $ pip install sponge_web_py
+    # $ pip install spongeWebPy
     #
-    # And where it will live on PyPI: https://pypi.org/project/sponge_web_py/
+    # And where it will live on PyPI: https://pypi.org/project/spongeWebPy/
     name='spongeWebPy',
     version="1.0.1",
 

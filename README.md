@@ -121,6 +121,8 @@ get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
                               sample_ID = ["TCGA-BP-4968","TCGA-B8-A54F"])
 ```
 
-#Citation
+## Citation
 If you use any results from spongeWeb, please cite as follow:
+```
 Pachl, E., Hoffmann, M., Stiegler, V., Hartung, M., Schulz, M. H., List, M., SPONGE-web: A pan-cancer resource for competing endogenous RNA interactions (manuscript in preparation)
+```
