@@ -3,7 +3,7 @@ import requests
 from pandas import json_normalize
 
 # local import
-import sponge_web_py.config as config
+import spongeWebPy.config as config
 
 
 def get_all_ceRNAInteractions(disease_name=None,
@@ -54,8 +54,8 @@ def get_all_ceRNAInteractions(disease_name=None,
     :return: A pandas dataframe containing all ceRNA interactions fitting the paramters.
              If empty return value will be the reason for failure.
     :example: #Retrieve all possible ceRNAs for gene, identified by ensg_number and threshold for pValue and mscor.
-            get_all_ceRNAInteractions(ensg_number=["ENSG00000259090","ENSG00000217289"], pValue=0.5,
-                                      pValueDirection="<", mscor=0.006, mscorDirection="<", limit=15)
+            get_all_ceRNAInteractions(disease_name = "pancancer", ensg_number=["ENSG00000259090","ENSG00000217289"],
+            pValue=0.5, pValueDirection="<", limit=15)
     """
 
     # Test parameter settings if provided

@@ -3,9 +3,9 @@ import requests
 from pandas import json_normalize
 
 #local import
-import sponge_web_py.config as config
+import spongeWebPy.config as config
 
-def get_datasetInformation(disease_name):
+def get_datasetInformation(disease_name=None):
     """
     Get information about all available datasets to start browsing or search for a specific cancer type/dataset.
     :param disease_name: The name of the dataset of interest as string.
@@ -50,6 +50,3 @@ def get_runInformation(disease_name):
     else:
         if response.status_code == 404:
             raise ValueError("API response is empty. Reason: " + data["detail"].values)
-
-
-

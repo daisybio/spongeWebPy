@@ -12,7 +12,7 @@ setup(
     # $ pip install sponge_web_py
     #
     # And where it will live on PyPI: https://pypi.org/project/sponge_web_py/
-    name='sponge_web_py',
+    name='spongeWebPy',
     version="1.0.1",
 
     # This is a one-line description or tagline of what your project does. This
@@ -23,7 +23,7 @@ setup(
     long_description_content_type="text/markdown",
 
     # This should be a valid link to your project's main homepage.
-    url='https://github.com/biomedbigdata/sponge_web_py',  # Optional
+    url='https://github.com/biomedbigdata/spongeWebPy',  # Optional
 
     # This should be your name or the name of the organization which owns the
     # project.
@@ -41,9 +41,8 @@ setup(
     keywords='SPONGE API ceRNAInteractions networkAnalysis',
 
 
-    # You can just specify package directories manually here if your project is
-    # simple.
-    packages=["sponge_web_py"],  # Required
+    # You can just specify package directories manually here if your project is simple.
+    packages=["spongeWebPy"],  # Required
 
     python_requires=">=3.5, <4",
 

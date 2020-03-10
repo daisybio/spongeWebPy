@@ -3,7 +3,7 @@ import requests
 from pandas import json_normalize
 
 #local import
-import sponge_web_py.config as config
+import spongeWebPy.config as config
 
 def get_survAna_pValues(disease_name,
                         ensg_number = None,
