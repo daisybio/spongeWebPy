@@ -93,14 +93,14 @@ get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
 ```
 
 ## Further Information and Analysis
-The database also contains information about the raw expression values and survival analyis data, which can be used to for Kaplan-Meyer-Plots (KMPs) for example. These information can be adressed with package functions.
+The database also contains information about the raw expression values and survival analyis data, which can be used for Kaplan-Meyer-Plots (KMPs) for example. These information can be adressed with package functions.
 To retrieve expression data use 
 
 ```
-# Retrieve gene expression values for specif genes by ensg_numbers
+# Retrieve gene expression values for specific genes by ensg_numbers
 get_geneExprValues(disease_name = "kidney clear cell carcinoma",
                    ensg_number = ["ENSG00000259090","ENSG00000217289"])
-# Retrieve gene expression values for specif miRNAs by mimat_numbers
+# Retrieve gene expression values for specific miRNAs by mimat_numbers
 get_mirnaExprValues(disease_name = "kidney clear cell carcinoma",
                     mimat_number = ["MIMAT0000076", "MIMAT0000261"])
 ```
@@ -124,5 +124,5 @@ get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
 ## Citation
 If you use any results from spongeWeb, please cite as follow:
 ```
-Pachl, E., Hoffmann, M., Stiegler, V., Hartung, M., Schulz, M. H., List, M., SPONGE-web: A pan-cancer resource for competing endogenous RNA interactions (manuscript in preparation)
+Hoffmann M., Pachl E., Hartung M., Stiegler V., Baumbach J., Schulz M., List M., SPONGE-web: A pan-cancer resource for competing endogenous RNA interactions (manuscript in preparation)
 ```
