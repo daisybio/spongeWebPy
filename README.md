@@ -55,11 +55,11 @@ get_geneCount(gene_symbol = ["HOXA1"])
 To find a sub network of nodes of interest use the functions:
 Get all ceRNA interactions by given identifications (ensg_number, gene_symbol or gene_type), specific cancer type or different filter possibilities according different statistical values (e.g. FDR adjusted p-value).
 ```
-# Retrieve all possible ceRNAs for gene, identified by ensg_number,
-# and threshold for pValue and mscor.
-get_all_ceRNAInteractions(ensg_number=["ENSG00000259090","ENSG00000217289"],
+# Retrieve all possible ceRNAs for a specific gene identified by ensg_number for a specific disease
+# and threshold for pValue
+get_all_ceRNAInteractions(disease_name = "pancancer", 
+                          ensg_number=["ENSG00000259090","ENSG00000217289"],
                           pValue=0.5, pValueDirection="<",
-                          mscor=0.006, mscorDirection="<",
                           limit=15)
 ```
 
@@ -73,14 +73,14 @@ get_ceRNA(disease_name = "kidney clear cell carcinoma",
 Get all interactions between the given identifiers (ensg_number or gene_symbol).
 
 ```
-get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-                                ensg_number = ["ENSG00000259090","ENSG00000217289","ENSG00000152284"])
+get_specific_ceRNAInteractions(disease_name = "pancancer",
+                                gene_symbol = ["PTENP1","VCAN","FN1"])
 ```
 
 ## How to find sponged miRNA?
 Find sponged miRNAs (the reason for a edge between two ceRNAs) with
 ```
-get_sponged_miRNA(disease_name="kidney", gene_symbol = ["TCF7L1", "SEMA4B"])
+get_sponged_miRNA(disease_name="kidney", gene_symbol = ["TCF7L1", "SEMA4B"], between=True)
 ```
 
 or find a miRNA induced ceRNA interaction with
