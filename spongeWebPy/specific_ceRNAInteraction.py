@@ -12,7 +12,6 @@ def get_specific_ceRNAInteractions(disease_name=None,
                                    pValueDirection="<",
                                    limit=100,
                                    offset=None):
-    print("start")
     """
     Get all interactions between the given identifiers (ensg_number or gene_symbol).
     :param disease_name: The name of the dataset of interest as string.
@@ -28,8 +27,8 @@ def get_specific_ceRNAInteractions(disease_name=None,
     :param offset: Starting point from where results should be shown.
     :return: A pandas dataframe containing all interactions between genes of interest.
              If empty return value will be the reason for failure.
-    :example: get_specific_ceRNAInteractions(disease_name = "kidney clear cell carcinoma",
-                                             ensg_number = ["ENSG00000259090","ENSG00000217289","ENSG00000152284"])
+    :example: get_specific_ceRNAInteractions(disease_name = "pancancer",
+                                             gene_symbol = ["PTENP1","VCAN","FN1"])
     """
     # Test parameter settings
     if pValueDirection is not None:

@@ -1,7 +1,7 @@
 # SPONGE-web API
 ```
 pip install spongeWebPy
-import spongeWebPy
+from spongeWebPy import *
 ```
 
 ## Purpose

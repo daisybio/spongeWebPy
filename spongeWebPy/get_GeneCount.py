@@ -24,8 +24,8 @@ def get_geneCount(disease_name=None,
     :return: A pandas dataframe cotaining the amount of times a gene is involved in the complete network (equals to degree),
              column count_all, and in significant (FDR adjusted pValue < 0.05) interactions of the network,
              column count_sign. If empty return value will be the reason for failure.
-    :example: # Get all genes from specific cancer with a minimum number of 150 at significant ceRNA interactions
-              get_geneCount(disease_name = "kidney clear cell carcinoma", minCountSign = 150)
+    :example: # Get all genes from specific cancer with a minimum number of 1500 at significant ceRNA interactions
+              get_geneCount(disease_name = "kidney clear cell carcinoma", minCountSign = 1500)
     """
 
     params = {"disease_name": disease_name, "minCountAll": minCountAll, "minCountSign": minCountSign}
