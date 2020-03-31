@@ -30,7 +30,7 @@ def get_ceRNA(disease_name,
     :param minBetweenness: Threshold of the betweenness.
     :param minNodeDegree: Threshold of the degree.
     :param minEigenvector: Threshold of the eigenvektor.
-    :param sorting: Possibilities for sorting of the results. Possible values are "pValue", "mscor" or "correlation".
+    :param sorting: Possibilities for sorting of the results. Possible values are "degree", "betweenness" or "eigenvector".
     :param descending: Descending (TRUE, default) or ascending (FALSE) ordering of the results.
     :param limit: Number of results that should be shown. Default value is 100 and can be up to 1000.
                   For more results please use batches, the provided offset parameter or download the whole dataset.
@@ -58,7 +58,7 @@ def get_ceRNA(disease_name,
             raise ValueError(
                 "Gene_type " + gene_type + " is not an allowed value. Please check the help page for further information.")
     if sorting is not None:
-        if sorting not in ["pValue", "mscor", "correlation"]:
+        if sorting not in ["degree", "betweenness", "eigenvector"]:
             raise ValueError("Provided Ssrting parameter: ", sorting,
                              " is not an allowed value. Please check the help page for further information.")
 
