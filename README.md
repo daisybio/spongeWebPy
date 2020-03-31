@@ -6,7 +6,7 @@ from spongeWebPy import *
 
 ## Purpose
 
-<div style="float:right;"><img src="https://raw.githubusercontent.com/biomedbigdata/SPONGE-web-frontend/master/src/assets/img/Sponge-logo-new-darkened.png" alt="SPONGE logo" style="width: 200px; display: block; margin-left: auto; margin-right: auto;"/></div>
+<div style="float:right;"><img src="https://raw.githubusercontent.com/biomedbigdata/SPONGE-web-R/master/vignettes/spongeLogo.png" alt="SPONGE logo" style="width: 200px; display: block; margin-left: auto; margin-right: auto;"/></div>
 
 With SPONGE being an outstanding approach regarding calculation speed and accuracy, the goal, making the data available in an easy way for as many researchers as possible, is the next logical step. 
 Furthermore, the data should become visualized in an interactive network, for uncomplicated research within a small part of interest of the networks. Available ceRNA interaction networks are based on paired gene and miRNA expression data taken from "The Cancer Genome Atlas" (TCGA). 
@@ -24,16 +24,23 @@ With SPONGE being an outstanding approach regarding calculation speed and accura
 Additionally, an interactive web interface was set up to provide the possibility to browse and to search the database via a graphical user interface. The website also facilitates processing the data returned from the database and visualizing the ceRNA interactions as a network. The website is available under https://exbio.wzw.tum.de/sponge/home.
 By help of these tools, third party developers like data scientists and biomedical researchers become able to carry out in depth cancer analyses and detect correlations between different cancer-causing factors on a new level while benefiting from an easy to use interface, which may lead to an uncomplicated and better understanding of cancer.
 
+A complete definition of all API endpoints can be found under https://exbio.wzw.tum.de/sponge-api/ui.
+
 ## General Workflow
+
+We have built a webresource to query SPONGE results easily via an API which requests data from the database. The API can be accessed through an graphical user interface of the API (Flask). If the data needs to be loaded inside a programming environment a R package and a python package is available for easy implementation. For visualisation of the data and for medical researches we provide a web application where graphs, networks and data are shown. The general build of the project is shown below.
 
 <img src="https://raw.githubusercontent.com/biomedbigdata/SPONGE-web-R/master/vignettes/proj_structure.PNG" alt="Structure SPONGE-Web project" style="width: 600px; display: block; margin-left: auto; margin-right: auto;"/>
 
-Structure of the SPONGE-Web project. A MySQL database contains all data of the different cancer types, with information about the genes, miRNAs and the ceRNA network. The API (immplemented with the Flask framework) controls the database and sends requests and accepts the answer. The API processes the data and sends it to the frontend (third party user like a R or Python package or website). At the website several visualization tools are provided. The database and the API represent the backend and the website, third party user represent the frontend.
-
 ## How to start requests?
+
 To start with further analysis with SPONGE data, it is important to get an overview about the available disease_types and the number of ceRNA interactions. This can be retrieved with:
 
-<img src="https://raw.githubusercontent.com/biomedbigdata/SPONGE-web-R/master/vignettes/geneCounts.png" alt="Structure SPONGE-Web project" style="width: 500px; display: block; margin-left: auto; margin-right: auto;"/>
+```{}
+get_overallCounts()
+```
+
+To get just an overview about the available datasets without any numbers use:
 
 ```
 get_datasetInformation()
