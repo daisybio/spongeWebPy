@@ -5,6 +5,7 @@ from pandas import json_normalize
 #local import
 import spongeWebPy.config as config
 
+
 def get_overallCounts():
     """
     Function return current statistic about database - amount of shared miRNA, significant and insignificant interactions per dataset
