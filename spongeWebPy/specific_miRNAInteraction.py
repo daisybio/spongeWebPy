@@ -15,25 +15,19 @@ def get_specific_miRNAInteraction(disease_name = None,
     :param disease_name: The name of the dataset of interest as string.
                          If default (None) is set, all available datasets with corresponding information are shown.
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
-    :param mimat_number: A list of mimat_number(s). If mimat_number is set, hs_number must be None.
-    :param hs_number: A list of hs_number(s). If hs_number is set, mimat_number must be None.
+    :param mimat_number: Mimat_number of interest. If mimat_number is set, hs_number must be None.
+    :param hs_number: hs_number of interest. If hs_number is set, mimat_number must be None.
     :param limit: Number of results that should be shown. Default value is 100 and can be up to 1000.
                   For more results please use batches, the provided offset parameter or download the whole dataset.
     :param offset: Starting point from where results should be shown.
     :return: A pandas dataframe containing all ceRNA interactions fitting the parameters.
              If empty return value will be the reason for failure.
     :example: get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
-                                            mimat_number = ["MIMAT0000076", "MIMAT0000261"],
+                                            mimat_number = "MIMAT0000076",
                                             limit = 15)
     """
 
-    params = {"disease_name": disease_name, "limit":limit, "offset":offset, "information": False}
-
-    # Add list type parameters
-    if mimat_number is not None:
-        params.update({"mimat_number": ",".join(mimat_number)})
-    if hs_number is not None:
-        params.update({"hs_number": ",".join(hs_number)})
+    params = {"disease_name": disease_name, "mimat_number":mimat_number,"hs_number":hs_number,"limit": limit, "offset": offset}
 
     api_url = '{0}miRNAInteraction/findSpecific'.format(config.api_url_base)
 
@@ -46,4 +40,4 @@ def get_specific_miRNAInteraction(disease_name = None,
         return data
     else:
         if response.status_code == 404:
-            raise ValueError("API response is empty. Reason: " + data["detail"].values)
+            raise ValueError("API response is empty. Reason: " + data["detail"].values)#
