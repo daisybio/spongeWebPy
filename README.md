@@ -28,7 +28,7 @@ A complete definition of all API endpoints can be found under https://exbio.wzw.
 
 ## General Workflow
 
-We have built a webresource to query SPONGE results easily via an API which requests data from the database. The API can be accessed through an graphical user interface of the API (Flask). If the data needs to be loaded inside a programming environment a R package and a python package is available for easy implementation. For visualisation of the data and for medical researches we provide a web application where graphs, networks and data are shown. The general build of the project is shown below.
+We have built a web-resource to query SPONGE results easily. via an API which requests data from the database. The API can be accessed through an graphical user interface of the API (Flask). If the data needs to be loaded inside a programming environment a R package and a python package is available for easy implementation. For visualisation of the data and for medical researches we provide a web application where graphs, networks and data are shown. The general build of the project is shown below.
 
 <img src="https://raw.githubusercontent.com/biomedbigdata/SPONGE-web-R/master/vignettes/proj_structure.PNG" alt="Structure SPONGE-Web project" style="width: 600px; display: block; margin-left: auto; margin-right: auto;"/>
 
@@ -126,6 +126,12 @@ For further patient/sample information:
 ```
 get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
                               sample_ID = ["TCGA-BP-4968","TCGA-B8-A54F"])
+```
+
+Further analysis and more complex information like associated cancer hallmarks and GO terms about the genes contributing to a network can be received by using this two functions:
+```
+get_geneOntology(gene_symbol=["PTEN","TIGAR"])
+get_hallmark(gene_symbol=["PTEN"])
 ```
 
 ## Citation
