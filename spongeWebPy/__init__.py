@@ -9,3 +9,6 @@ from spongeWebPy.find_miRNA import *
 from spongeWebPy.get_GeneCount import *
 from spongeWebPy.specific_ceRNA import *
 from spongeWebPy.specific_ceRNAInteraction import *
+from spongeWebPy.geneOntology import *
+from spongeWebPy.hallmarks import *
+from spongeWebPy.overview import *
