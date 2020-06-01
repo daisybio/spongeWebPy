@@ -128,7 +128,7 @@ get_survAna_sampleInformation(disease_name = "kidney clear cell carcinoma",
                               sample_ID = ["TCGA-BP-4968","TCGA-B8-A54F"])
 ```
 
-Further analysis and more complex information like associated cancer hallmarks and GO terms about the genes contributing to a network can be received by using this two functions:
+Further analysis and more complex information like associated cancer hallmarks, GO terms or wikipathway keys about the genes contributing to a network can be received by using this three functions:
 ```
 get_geneOntology(gene_symbol=["PTEN","TIGAR"])
 get_hallmark(gene_symbol=["PTEN"])
