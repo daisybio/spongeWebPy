@@ -14,7 +14,7 @@ setup(
     #
     # And where it will live on PyPI: https://pypi.org/project/spongeWebPy/
     name='spongeWebPy',
-    version="1.1.2",
+    version="1.1.3",
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:

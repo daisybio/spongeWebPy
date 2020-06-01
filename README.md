@@ -132,6 +132,7 @@ Further analysis and more complex information like associated cancer hallmarks, 
 ```
 get_geneOntology(gene_symbol=["PTEN","TIGAR"])
 get_hallmark(gene_symbol=["PTEN"])
+get_wiki
 ```
 
 ## Citation

@@ -10,7 +10,7 @@ def get_WikiPathwayKey(gene_symbol):
     Associated wikipathway keys for gene(s) of interest. The WikiPathways database is used as external source.
     :param gene_symbol: A list of gene symbol(s). Required parameter.
     :example: Get all wikipathway keys associated with gene(s) of interest.
-              get_geneOntology(gene_symbol=["PTEN","GJA1"])
+              get_WikiPathwayKey(gene_symbol=["PTEN","GJA1"])
     """
 
     params = {}
