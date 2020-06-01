@@ -12,3 +12,4 @@ from spongeWebPy.specific_ceRNAInteraction import *
 from spongeWebPy.geneOntology import *
 from spongeWebPy.hallmarks import *
 from spongeWebPy.overview import *
+from spongeWebPy.wikipathway import *

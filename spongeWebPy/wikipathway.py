@@ -5,12 +5,12 @@ from pandas import json_normalize
 # local import
 import spongeWebPy.config as config
 
-def get_hallmark(gene_symbol):
+def get_WikiPathwayKey(gene_symbol):
     """
-    Associated cancer hallmark for gene(s) of interest. Cancer Hallmark Genes (http://bio-bigdata.hrbmu.edu.cn/CHG/) is used as external source.
+    Associated wikipathway keys for gene(s) of interest. The WikiPathways database is used as external source.
     :param gene_symbol: A list of gene symbol(s). Required parameter.
-    :example: Get all GO terms associated with gene(s) of interest.
-              get_hallmark(gene_symbol=["TUBBP2","CSNK1A1L"])
+    :example: Get all wikipathway keys associated with gene(s) of interest.
+              get_geneOntology(gene_symbol=["PTEN","GJA1"])
     """
 
     params = {}
@@ -19,7 +19,7 @@ def get_hallmark(gene_symbol):
     if gene_symbol is not None:
         params.update({"gene_symbol": ",".join(gene_symbol)})
 
-    api_url = '{0}getHallmark'.format(config.api_url_base)
+    api_url = '{0}getWikipathway'.format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
