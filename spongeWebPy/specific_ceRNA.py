@@ -7,6 +7,8 @@ import spongeWebPy.config as config
 
 def get_ceRNA(disease_name,
               gene_type=None,
+              ensg_number=None,
+              gene_symbol=None,
               minBetweenness=None,
               minNodeDegree=None,
               minEigenvector=None,
@@ -19,6 +21,8 @@ def get_ceRNA(disease_name,
     :param disease_name: The name of the dataset of interest as string.
                          If default (None) is set, all available datasets with corresponding information are shown.
                          Fuzzy search is available (e.g. "kidney clear cell carcinoma" or just "kidney").
+    :param ensg_number: A list of ensg number(s). If ensg_number is set, gene_symbol must be None.
+    :param gene_symbol: A list of gene symbol(s). If gene_symbol is set, ensg_number must be None.
     :param gene_type: String that defines the type of gene of interest. One out of
                       [3prime_overlapping_ncRNA, antisense, antisense_RNA, bidirectional_promoter_lncRNA, IG_C_gene,
                       IG_C_pseudogene, IG_V_gene, IG_V_pseudogene, lincRNA, macro_lncRNA, miRNA, misc_RNA, Mt_rRNA,
@@ -65,6 +69,12 @@ def get_ceRNA(disease_name,
     params = {"disease_name": disease_name, "gene_type": gene_type, "minBetweenness": minBetweenness,
               "minNodeDegree": minNodeDegree, "minEigenvector": minEigenvector, "sorting": sorting,
               "descending": descending, "limit": limit, "offset": offset, "information": False}
+
+    # Add list type parameters
+    if ensg_number is not None:
+        params.update({"ensg_number": ",".join(ensg_number)})
+    if gene_symbol is not None:
+        params.update({"gene_symbol": ",".join(gene_symbol)})
 
     api_url = '{0}/findceRNA'.format(config.api_url_base)
 
