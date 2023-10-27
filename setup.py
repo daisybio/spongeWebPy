@@ -63,7 +63,8 @@ setup(
         "pytz>=2019.3",
         "requests>=2.23.0",
         "six>=1.14.0",
-        "urllib3>=1.25.8"
+        "urllib3>=1.25.8",
+        "matplotlib==3.7.1"
     ],
 
     include_package_data=True,
