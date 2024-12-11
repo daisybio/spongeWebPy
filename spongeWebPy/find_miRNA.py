@@ -8,7 +8,11 @@ import spongeWebPy.config as config
 
 
 def get_sponged_miRNA(
-    disease_name=None, ensg_number=None, gene_symbol=None, between=False
+    disease_name=None,
+    ensg_number=None,
+    gene_symbol=None,
+    between=False,
+    sponge_db_version=config.LATEST,
 ):
     """
     Get all miRNAs that contribute to all interactions between the given identifiers (ensg_number or gene_symbol).
@@ -24,7 +28,11 @@ def get_sponged_miRNA(
              If empty return value will be the reason for failure.
     :example: get_sponged_miRNA(disease_name="kidney", gene_symbol = ["TCF7L1", "SEMA4B"])
     """
-    params = {"disease_name": disease_name, "between": between}
+    params = {
+        "disease_name": disease_name,
+        "between": between,
+        "sponge_db_version": sponge_db_version,
+    }
 
     # Add list type parameters
     if ensg_number is not None:
@@ -35,6 +43,7 @@ def get_sponged_miRNA(
     api_url = "{0}miRNAInteraction/findceRNA".format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
+    print(response.url)
 
     json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
