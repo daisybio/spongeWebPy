@@ -1,17 +1,22 @@
 import json
+
 import requests
 from pandas import json_normalize
 
 # local import
 import spongeWebPy.config as config
 
-def get_specific_ceRNAInteractions(disease_name=None,
-                                   ensg_number=None,
-                                   gene_symbol=None,
-                                   pValue=0.05,
-                                   pValueDirection="<",
-                                   limit=100,
-                                   offset=None):
+
+def get_specific_ceRNAInteractions(
+    disease_name=None,
+    ensg_number=None,
+    gene_symbol=None,
+    pValue=0.05,
+    pValueDirection="<",
+    limit=100,
+    offset=None,
+    sponge_db_version=config.LATEST,
+):
     """
     Get all interactions between the given identifiers (ensg_number or gene_symbol).
     :param disease_name: The name of the dataset of interest as string.
@@ -25,6 +30,7 @@ def get_specific_ceRNAInteractions(disease_name=None,
     :param limit: Number of results that should be shown. Default value is 100 and can be up to 1000.
                   For more results please use batches, the provided offset parameter or download the whole dataset.
     :param offset: Starting point from where results should be shown.
+    :param sponge_db_version: Version of SPONGEdb to use. Default is set in config.
     :return: A pandas dataframe containing all interactions between genes of interest.
              If empty return value will be the reason for failure.
     :example: get_specific_ceRNAInteractions(disease_name = "pancancer",
@@ -33,10 +39,20 @@ def get_specific_ceRNAInteractions(disease_name=None,
     # Test parameter settings
     if pValueDirection is not None:
         if pValueDirection not in [">", "<"]:
-            raise ValueError("pValueDirection:", pValueDirection,
-                             " is not an allowed value. Please check the help page for further information.")
+            raise ValueError(
+                "pValueDirection:",
+                pValueDirection,
+                " is not an allowed value. Please check the help page for further information.",
+            )
 
-    params = {"disease_name": disease_name, "pValue": pValue, "pValueDirection":pValueDirection, "limit": limit, "offset": offset}
+    params = {
+        "disease_name": disease_name,
+        "pValue": pValue,
+        "pValueDirection": pValueDirection,
+        "limit": limit,
+        "offset": offset,
+        "sponge_db_version": sponge_db_version,
+    }
 
     # Add list type parameters
     if ensg_number is not None:
@@ -44,11 +60,11 @@ def get_specific_ceRNAInteractions(disease_name=None,
     if gene_symbol is not None:
         params.update({"gene_symbol": ",".join(gene_symbol)})
 
-    api_url = '{0}ceRNAInteraction/findSpecific'.format(config.api_url_base)
+    api_url = "{0}ceRNAInteraction/findSpecific".format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
-    json_dicts = json.loads(response.content.decode('utf-8'))
+    json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
 
     if response.status_code == 200:

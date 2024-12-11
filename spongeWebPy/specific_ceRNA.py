@@ -1,21 +1,26 @@
 import json
+
 import requests
 from pandas import json_normalize
 
 # local import
 import spongeWebPy.config as config
 
-def get_ceRNA(disease_name,
-              gene_type=None,
-              ensg_number=None,
-              gene_symbol=None,
-              minBetweenness=None,
-              minNodeDegree=None,
-              minEigenvector=None,
-              sorting=None,
-              descending=True,
-              limit=100,
-              offset=None):
+
+def get_ceRNA(
+    disease_name,
+    gene_type=None,
+    ensg_number=None,
+    gene_symbol=None,
+    minBetweenness=None,
+    minNodeDegree=None,
+    minEigenvector=None,
+    sorting=None,
+    descending=True,
+    limit=100,
+    offset=None,
+    sponge_db_version=config.LATEST,
+):
     """
     Get all ceRNAs in a disease of interest (search not for a specific ceRNA, but search for all ceRNAs satisfying filter functions).
     :param disease_name: The name of the dataset of interest as string.
@@ -39,6 +44,7 @@ def get_ceRNA(disease_name,
     :param limit: Number of results that should be shown. Default value is 100 and can be up to 1000.
                   For more results please use batches, the provided offset parameter or download the whole dataset.
     :param offset: Starting point from where results should be shown.
+    :param sponge_db_version: Version of SPONGEdb to use. Default is set in config.
     :return: A pandas dataframe containing all ceRNAs (genes) satisfying the given filters.
              If empty return value will be the reason for failure.
     :example: get_ceRNA(disease_name = "kidney clear cell carcinoma",
@@ -47,28 +53,73 @@ def get_ceRNA(disease_name,
 
     # Test given parameter
     if gene_type is not None:
-        types = ["3prime_overlapping_ncRNA", "antisense", "antisense_RNA", "bidirectional_promoter_lncRNA",
-                 "IG_C_gene", "IG_C_pseudogene",
-                 "IG_V_gene", "IG_V_pseudogene", "lincRNA", "macro_lncRNA", "miRNA", "misc_RNA", "Mt_rRNA",
-                 "polymorphic_pseudogene",
-                 "processed_pseudogene", "processed_transcript", "protein_coding", "pseudogene", "ribozyme", "rRNA",
-                 "rRNA_pseudogene",
-                 "scaRNA", "scRNA", "sense_intronic", "sense_overlapping", "snoRNA", "snRNA", "TEC", "TR_C_gene",
-                 "TR_V_gene", "TR_V_pseudogene",
-                 "transcribed_processed_pseudogene", "transcribed_unitary_pseudogene",
-                 "transcribed_unprocessed_pseudogene",
-                 "translated_processed_pseudogene", "unitary_pseudogene", "unprocessed_pseudogene", "vaultRNA"]
+        types = [
+            "3prime_overlapping_ncRNA",
+            "antisense",
+            "antisense_RNA",
+            "bidirectional_promoter_lncRNA",
+            "IG_C_gene",
+            "IG_C_pseudogene",
+            "IG_V_gene",
+            "IG_V_pseudogene",
+            "lincRNA",
+            "macro_lncRNA",
+            "miRNA",
+            "misc_RNA",
+            "Mt_rRNA",
+            "polymorphic_pseudogene",
+            "processed_pseudogene",
+            "processed_transcript",
+            "protein_coding",
+            "pseudogene",
+            "ribozyme",
+            "rRNA",
+            "rRNA_pseudogene",
+            "scaRNA",
+            "scRNA",
+            "sense_intronic",
+            "sense_overlapping",
+            "snoRNA",
+            "snRNA",
+            "TEC",
+            "TR_C_gene",
+            "TR_V_gene",
+            "TR_V_pseudogene",
+            "transcribed_processed_pseudogene",
+            "transcribed_unitary_pseudogene",
+            "transcribed_unprocessed_pseudogene",
+            "translated_processed_pseudogene",
+            "unitary_pseudogene",
+            "unprocessed_pseudogene",
+            "vaultRNA",
+        ]
         if gene_type not in types:
             raise ValueError(
-                "Gene_type " + gene_type + " is not an allowed value. Please check the help page for further information.")
+                "Gene_type "
+                + gene_type
+                + " is not an allowed value. Please check the help page for further information."
+            )
     if sorting is not None:
         if sorting not in ["degree", "betweenness", "eigenvector"]:
-            raise ValueError("Provided Ssrting parameter: ", sorting,
-                             " is not an allowed value. Please check the help page for further information.")
+            raise ValueError(
+                "Provided Ssrting parameter: ",
+                sorting,
+                " is not an allowed value. Please check the help page for further information.",
+            )
 
-    params = {"disease_name": disease_name, "gene_type": gene_type, "minBetweenness": minBetweenness,
-              "minNodeDegree": minNodeDegree, "minEigenvector": minEigenvector, "sorting": sorting,
-              "descending": descending, "limit": limit, "offset": offset, "information": False}
+    params = {
+        "disease_name": disease_name,
+        "gene_type": gene_type,
+        "minBetweenness": minBetweenness,
+        "minNodeDegree": minNodeDegree,
+        "minEigenvector": minEigenvector,
+        "sorting": sorting,
+        "descending": descending,
+        "limit": limit,
+        "offset": offset,
+        "information": False,
+        "sponge_db_version": sponge_db_version,
+    }
 
     # Add list type parameters
     if ensg_number is not None:
@@ -76,11 +127,11 @@ def get_ceRNA(disease_name,
     if gene_symbol is not None:
         params.update({"gene_symbol": ",".join(gene_symbol)})
 
-    api_url = '{0}/findceRNA'.format(config.api_url_base)
+    api_url = "{0}/findceRNA".format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
-    json_dicts = json.loads(response.content.decode('utf-8'))
+    json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
 
     if response.status_code == 200:

@@ -1,18 +1,23 @@
 import json
+
 import requests
 from pandas import json_normalize
 
 # local import
 import spongeWebPy.config as config
 
-def get_miRNAOccurences(disease_name,
-                        mimat_number = None,
-                        hs_number = None,
-                        occurences = None,
-                        sorting = None,
-                        descending = None,
-                        limit = 100,
-                        offset = None):
+
+def get_miRNAOccurences(
+    disease_name,
+    mimat_number=None,
+    hs_number=None,
+    occurences=None,
+    sorting=None,
+    descending=None,
+    limit=100,
+    offset=None,
+    sponge_db_version=config.LATEST,
+):
     """
     Get all mirna involved in cancer type/dataset of interest occurring a certain amount of times.
     :param disease_name: The name of the dataset of interest as string.
@@ -26,6 +31,7 @@ def get_miRNAOccurences(disease_name,
     :param limit: Number of results that should be shown. Default value is 100 and can be up to 1000.
                   For more results please use batches, the provided offset parameter or download the whole dataset.
     :param offset: Starting point from where results should be shown.
+    :param sponge_db_version: Version of SPONGEdb to use. Default is set in config.
     :return: A pandas dataframe with all miRNAs occurring at leat "occurrences" times.
              If empty return value will be the reason for failure.
     :example: get_miRNAOccurences(disease_name="kidney clear cell carcinoma", occurences = 1000, limit = 10)
@@ -33,11 +39,21 @@ def get_miRNAOccurences(disease_name,
     # Test given parameter
     if sorting is not None:
         if sorting not in ["pValue", "mscor", "correlation"]:
-            raise ValueError("Provided Ssrting parameter: ", sorting,
-                             " is not an allowed value. Please check the help page for further information.")
+            raise ValueError(
+                "Provided Ssrting parameter: ",
+                sorting,
+                " is not an allowed value. Please check the help page for further information.",
+            )
 
-    params = {"disease_name": disease_name, "occurences": occurences, "sorting": sorting,
-              "descending": descending, "limit": limit, "offset": offset}
+    params = {
+        "disease_name": disease_name,
+        "occurences": occurences,
+        "sorting": sorting,
+        "descending": descending,
+        "limit": limit,
+        "offset": offset,
+        "sponge_db_version": sponge_db_version,
+    }
 
     # Add list type parameters
     if mimat_number is not None:
@@ -45,11 +61,11 @@ def get_miRNAOccurences(disease_name,
     if hs_number is not None:
         params.update({"hs_number": ",".join(hs_number)})
 
-    api_url = '{0}miRNAInteraction/getOccurence'.format(config.api_url_base)
+    api_url = "{0}miRNAInteraction/getOccurence".format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
-    json_dicts = json.loads(response.content.decode('utf-8'))
+    json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
 
     if response.status_code == 200:

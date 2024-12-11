@@ -1,15 +1,20 @@
 import json
+
 import requests
 from pandas import json_normalize
 
 # local import
 import spongeWebPy.config as config
 
-def get_geneCount(disease_name=None,
-                  ensg_number=None,
-                  gene_symbol=None,
-                  minCountAll = None,
-                  minCountSign = None):
+
+def get_geneCount(
+    disease_name=None,
+    ensg_number=None,
+    gene_symbol=None,
+    minCountAll=None,
+    minCountSign=None,
+    sponge_db_version=config.LATEST,
+):
     """
     Number of Times Gene Involved in Complete Network and Significant Interactions.
     :param disease_name: The name of the dataset of interest as string.
@@ -21,6 +26,7 @@ def get_geneCount(disease_name=None,
                         (e.g. the degree of the corresponding node must be greater than minCountAll).
     :param minCountSign: Defines the minimal number of times a gene has to be involved in significant
                         (p.adj < 0.05) interactions in the network.
+    :param sponge_db_version: Version of SPONGEdb to use. Default is set in config.
     :return: A pandas dataframe cotaining the amount of times a gene is involved in the complete network (equals to degree),
              column count_all, and in significant (FDR adjusted pValue < 0.05) interactions of the network,
              column count_sign. If empty return value will be the reason for failure.
@@ -28,7 +34,12 @@ def get_geneCount(disease_name=None,
               get_geneCount(disease_name = "kidney clear cell carcinoma", minCountSign = 1500)
     """
 
-    params = {"disease_name": disease_name, "minCountAll": minCountAll, "minCountSign": minCountSign}
+    params = {
+        "disease_name": disease_name,
+        "minCountAll": minCountAll,
+        "minCountSign": minCountSign,
+        "sponge_db_version": sponge_db_version,
+    }
 
     # Add list type parameters
     if ensg_number is not None:
@@ -36,11 +47,11 @@ def get_geneCount(disease_name=None,
     if gene_symbol is not None:
         params.update({"gene_symbol": ",".join(gene_symbol)})
 
-    api_url = '{0}getGeneCount'.format(config.api_url_base)
+    api_url = "{0}getGeneCount".format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
-    json_dicts = json.loads(response.content.decode('utf-8'))
+    json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
 
     if response.status_code == 200:

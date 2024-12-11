@@ -1,21 +1,26 @@
 import json
+
 import requests
 from pandas import json_normalize
 
 # local import
 import spongeWebPy.config as config
 
-def get_specific_miRNAInteraction(disease_name = None,
-                                  mimat_number = None,
-                                  hs_number = None,
-                                pValue=0.05,
-                                 pValueDirection="<",
-                              mscor=None,
-                              mscorDirection="<",
-                              correlation=None,
-                              correlationDirection="<",
-                                  limit = 100,
-                                  offset = None):
+
+def get_specific_miRNAInteraction(
+    disease_name=None,
+    mimat_number=None,
+    hs_number=None,
+    pValue=0.05,
+    pValueDirection="<",
+    mscor=None,
+    mscorDirection="<",
+    correlation=None,
+    correlationDirection="<",
+    limit=100,
+    offset=None,
+    sponge_db_version=config.LATEST,
+):
     """
     Get all ceRNA interactions where miRNA(s) of interest (different identifiers available - e.g. hs number or mimat number) contribute to.
     :param disease_name: The name of the dataset of interest as string.
@@ -35,6 +40,7 @@ def get_specific_miRNAInteraction(disease_name = None,
     :param correlationDirection: Direction of the correlation threshold (<, >). Must be set if pValue is set.
                                  Possible values are: "<", ">".
     :param offset: Starting point from where results should be shown.
+    :param sponge_db_version: Version of SPONGEdb to use. Default is set in config.
     :return: A pandas dataframe containing all ceRNA interactions fitting the parameters.
              If empty return value will be the reason for failure.
     :example: get_specific_miRNAInteraction(disease_name = "kidney clear cell carcinoma",
@@ -42,16 +48,26 @@ def get_specific_miRNAInteraction(disease_name = None,
                                             limit = 15)
     """
 
-    params = {"disease_name": disease_name, "mimat_number":mimat_number,"hs_number":hs_number,
-              "pValue": pValue, "pValueDirection": pValueDirection, "mscor":mscor, "mscorDirection":mscorDirection, "correlation":correlation,
-              "correlationDirection":correlationDirection,
-              "limit": limit, "offset": offset}
+    params = {
+        "disease_name": disease_name,
+        "mimat_number": mimat_number,
+        "hs_number": hs_number,
+        "pValue": pValue,
+        "pValueDirection": pValueDirection,
+        "mscor": mscor,
+        "mscorDirection": mscorDirection,
+        "correlation": correlation,
+        "correlationDirection": correlationDirection,
+        "limit": limit,
+        "offset": offset,
+        "sponge_db_version": sponge_db_version,
+    }
 
-    api_url = '{0}miRNAInteraction/findSpecific'.format(config.api_url_base)
+    api_url = "{0}miRNAInteraction/findSpecific".format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
-    json_dicts = json.loads(response.content.decode('utf-8'))
+    json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
 
     if response.status_code == 200:

@@ -1,9 +1,11 @@
 import json
+
 import requests
 from pandas import json_normalize
 
 # local import
 import spongeWebPy.config as config
+
 
 def get_WikiPathwayKey(gene_symbol):
     """
@@ -19,11 +21,11 @@ def get_WikiPathwayKey(gene_symbol):
     if gene_symbol is not None:
         params.update({"gene_symbol": ",".join(gene_symbol)})
 
-    api_url = '{0}getWikipathway'.format(config.api_url_base)
+    api_url = "{0}getWikipathway".format(config.api_url_base)
 
     response = requests.get(api_url, headers=config.headers, params=params)
 
-    json_dicts = json.loads(response.content.decode('utf-8'))
+    json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
 
     if response.status_code == 200:
