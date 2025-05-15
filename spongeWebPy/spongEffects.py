@@ -1,10 +1,10 @@
 import json
 
 import requests
-from pandas import json_normalize
 
 # local import
 import spongeWebPy.config as config
+from pandas import json_normalize
 
 
 def get_spongeEffectsRuns(disease_name):
@@ -130,7 +130,6 @@ def get_spongeEffectsModules(disease_name, level="gene"):
     api_url = "{0}spongEffects/{1}".format(config.api_url_base, endpoint)
 
     response = requests.get(api_url, headers=config.headers, params=params)
-
     json_dicts = json.loads(response.content.decode("utf-8"))
 
     data = json_normalize(json_dicts)
@@ -184,8 +183,6 @@ def get_spongeEffectsModuleMembers(
     api_url = "{0}spongEffects/{1}".format(config.api_url_base, endpoint)
 
     response = requests.get(api_url, headers=config.headers, params=params)
-
-    print(response.url)
 
     json_dicts = json.loads(response.content.decode("utf-8"))
 

@@ -12,5 +12,7 @@ from spongeWebPy.overview import *
 from spongeWebPy.specific_ceRNA import *
 from spongeWebPy.specific_ceRNAInteraction import *
 from spongeWebPy.specific_miRNAInteraction import *
+from spongeWebPy.spongEffects import *
 from spongeWebPy.survivalAnalysis import *
+from spongeWebPy.transcript_gene import *
 from spongeWebPy.wikipathway import *

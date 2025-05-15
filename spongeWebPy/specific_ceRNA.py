@@ -3,6 +3,7 @@ import json
 import requests
 from pandas import json_normalize
 
+
 # local import
 import spongeWebPy.config as config
 
@@ -39,7 +40,7 @@ def get_ceRNA(
     :param minBetweenness: Threshold of the betweenness.
     :param minNodeDegree: Threshold of the degree.
     :param minEigenvector: Threshold of the eigenvektor.
-    :param sorting: Possibilities for sorting of the results. Possible values are "degree", "betweenness" or "eigenvector".
+    :param sorting: Possibilities for sorting of the results. Possible values are "node_degree", "betweenness" or "eigenvector".
     :param descending: Descending (TRUE, default) or ascending (FALSE) ordering of the results.
     :param limit: Number of results that should be shown. Default value is 100 and can be up to 1000.
                   For more results please use batches, the provided offset parameter or download the whole dataset.
@@ -100,9 +101,9 @@ def get_ceRNA(
                 + " is not an allowed value. Please check the help page for further information."
             )
     if sorting is not None:
-        if sorting not in ["degree", "betweenness", "eigenvector"]:
+        if sorting not in ["node_degree", "betweenness", "eigenvector"]:
             raise ValueError(
-                "Provided Ssrting parameter: ",
+                "Provided Sorting parameter: ",
                 sorting,
                 " is not an allowed value. Please check the help page for further information.",
             )
@@ -128,9 +129,7 @@ def get_ceRNA(
         params.update({"gene_symbol": ",".join(gene_symbol)})
 
     api_url = "{0}/findceRNA".format(config.api_url_base)
-
     response = requests.get(api_url, headers=config.headers, params=params)
-
     json_dicts = json.loads(response.content.decode("utf-8"))
     data = json_normalize(json_dicts)
 
